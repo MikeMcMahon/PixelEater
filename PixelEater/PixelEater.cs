@@ -6,12 +6,12 @@ namespace PixelEater
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Game1 : Game
+    public class PixelEater : Game
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
 
-        public Game1()
+        public PixelEater()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -58,7 +58,6 @@ namespace PixelEater
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
-
             base.Update(gameTime);
         }
 
