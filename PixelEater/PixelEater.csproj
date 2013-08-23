@@ -127,6 +127,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Game\PEGame.cs" />
+    <Compile Include="Core\Game\GameState.cs" />
+    <Compile Include="Core\Game\MainMenuState.cs" />
+    <Compile Include="Core\Game\SplashScreenState.cs" />
     <Compile Include="Core\Game\Sprites\Sprite.cs" />
     <Compile Include="Core\State\IState.cs" />
     <Compile Include="Core\State\IStateObject.cs" />

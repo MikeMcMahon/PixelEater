@@ -1,5 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using PixelEater.Core.Game;
 
 namespace PixelEater
 {
@@ -10,6 +12,7 @@ namespace PixelEater
     {
         GraphicsDeviceManager _graphics;
         SpriteBatch _spriteBatch;
+        PEGame _pixelEater;
 
         public PixelEater()
         {
@@ -25,7 +28,8 @@ namespace PixelEater
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            this._pixelEater = new PEGame();
+            this.IsMouseVisible = false;
             base.Initialize();
         }
 
@@ -39,6 +43,7 @@ namespace PixelEater
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
+            _pixelEater.LoadContent(GraphicsDevice, this.Content);
         }
 
         /// <summary>
@@ -48,6 +53,7 @@ namespace PixelEater
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
+            _pixelEater.UnloadContent();
         }
 
         /// <summary>
@@ -58,6 +64,7 @@ namespace PixelEater
         protected override void Update(GameTime gameTime)
         {
             // TODO: Add your update logic here
+            _pixelEater.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -70,6 +77,7 @@ namespace PixelEater
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
+            _pixelEater.Draw(this._spriteBatch);
 
             base.Draw(gameTime);
         }

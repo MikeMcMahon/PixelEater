@@ -7,28 +7,28 @@ using System.Threading.Tasks;
 
 namespace PixelEater.Core.Game
 {
-    class GameState : IState<Game>
+    class GameState : IState<PEGame>
     {
-        List<IStateObject<Game>> _state = new List<IStateObject<Game>>();
+        List<IStateObject<PEGame>> _state = new List<IStateObject<PEGame>>();
 
-        public void HandleInput(Game super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
+        public void HandleInput(PEGame super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
             _state.Last().HandleInput(super, gameTime, input);
         }
 
-        public void Update(Game super, Microsoft.Xna.Framework.GameTime gameTime)
+        public void Update(PEGame super, Microsoft.Xna.Framework.GameTime gameTime)
         {
             _state.Last().Update(super, gameTime);
         }
 
-        public void PushState(Game super, IStateObject<Game> state)
+        public void PushState(PEGame super, IStateObject<PEGame> state)
         {
             _state.Last().Exit(super);
             _state.Add(state);
             _state.Last().Enter(super);
         }
 
-        public void PopState(Game super)
+        public void PopState(PEGame super)
         {
             _state.Last().Exit(super);
             _state.RemoveAt(_state.Count);
