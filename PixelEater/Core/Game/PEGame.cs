@@ -14,7 +14,7 @@ namespace PixelEater.Core.Game
     class PEGame
     {
         Sprite background = new Sprite();
-        Sprite mouseCursor = new Sprite();
+        GameCursor mouseCursor = new GameCursor();
 
         public void LoadContent(GraphicsDevice device, ContentManager manager)
         {
@@ -41,15 +41,20 @@ namespace PixelEater.Core.Game
         public void Draw(SpriteBatch batch)
         {
             batch.Begin();
-            batch.Draw(background.Texture, background.Size, background.Color);
-            batch.Draw(mouseCursor.Texture, mouseCursor.Size, Color.White);
+            batch.Draw(background.Texture, background.Size, Color.White);
+
+            if (mouseCursor.Show)
+            {
+                batch.Draw(mouseCursor.Texture, mouseCursor.Size, mouseCursor.Color);
+            }
             batch.End();
         }
 
+        Random rand = new Random();
         public void Update(GameTime gameTime)
         {
-            // Keep the mouse cursor :) 
-            mouseCursor.Size = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, mouseCursor.Size.Width, mouseCursor.Size.Height);
+            mouseCursor.HandleInput(gameTime, null);
+            mouseCursor.Update(gameTime);    
         }
     }
 }
