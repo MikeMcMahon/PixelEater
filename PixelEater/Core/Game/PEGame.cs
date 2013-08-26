@@ -27,6 +27,10 @@ namespace PixelEater.Core.Game
 
             background.Size = new Rectangle(width - (width / 2), height - (height / 2), width, height);
 
+
+            // center the mouse on screen
+            Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
+
             mouseCursor.Texture = new Texture2D(device, 1, 1);
             mouseCursor.Color = Color.DarkSalmon;
             mouseCursor.Texture.SetData(new Color[] { mouseCursor.Color });
