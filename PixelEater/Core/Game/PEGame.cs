@@ -13,8 +13,9 @@ namespace PixelEater.Core.Game
 {
     class PEGame
     {
-        Sprite background = new Sprite();
-        GameCursor mouseCursor = new GameCursor();
+        internal Sprite background = new Sprite();
+        internal GameCursor mouseCursor = new GameCursor();
+        internal GameState _state = new GameState();
 
         public void LoadContent(GraphicsDevice device, ContentManager manager)
         {
@@ -22,10 +23,8 @@ namespace PixelEater.Core.Game
             background.Color = Color.White;
             background.Texture.SetData(new Color[] { background.Color });
             background.Position = new Vector2(0, 0);
-            int width = device.Viewport.Width / 2;
-            int height = device.Viewport.Height / 2;
 
-            background.Size = new Rectangle(width - (width / 2), height - (height / 2), width, height);
+            background.Size = new Rectangle(0,0, device.Viewport.Width, device.Viewport.Height);
 
 
             // center the mouse on screen
@@ -36,10 +35,22 @@ namespace PixelEater.Core.Game
             mouseCursor.Texture.SetData(new Color[] { mouseCursor.Color });
             mouseCursor.Size = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 20, 20);
 
+            _state.PushState(this, new SplashScreenState());
+
         }
 
         public void UnloadContent()
         {
+        }
+
+        Random rand = new Random();
+        public void Update(GameTime gameTime)
+        {
+
+            mouseCursor.HandleInput(gameTime, null);
+            mouseCursor.Update(gameTime);
+            _state.HandleInput(this, gameTime, null);
+            _state.Update(this, gameTime);
         }
 
         public void Draw(SpriteBatch batch)
@@ -52,13 +63,6 @@ namespace PixelEater.Core.Game
                 batch.Draw(mouseCursor.Texture, mouseCursor.Size, mouseCursor.Color);
             }
             batch.End();
-        }
-
-        Random rand = new Random();
-        public void Update(GameTime gameTime)
-        {
-            mouseCursor.HandleInput(gameTime, null);
-            mouseCursor.Update(gameTime);    
         }
     }
 }

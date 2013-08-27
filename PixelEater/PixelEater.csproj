@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Game\LoadingScreenState.cs" />
     <Compile Include="Core\Game\PEGame.cs" />
     <Compile Include="Core\Game\GameState.cs" />
     <Compile Include="Core\Game\MainMenuState.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Core\Game\Sprites\Cursor\HiddenCursorState.cs" />
     <Compile Include="Core\Game\Sprites\Cursor\VisibleCursorState.cs" />
     <Compile Include="Core\Game\Sprites\Sprite.cs" />
+    <Compile Include="Core\State\InvisibleState.cs" />
     <Compile Include="Core\State\IState.cs" />
     <Compile Include="Core\State\IStateObject.cs" />
     <Compile Include="Input\IPEGameInput.cs" />

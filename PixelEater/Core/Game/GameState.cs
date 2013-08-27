@@ -23,13 +23,21 @@ namespace PixelEater.Core.Game
 
         public void PushState(PEGame super, IStateObject<PEGame> state)
         {
-            _state.Last().Exit(super);
+            if (_state.Count > 0)
+            {
+                _state.Last().Exit(super);
+            }
             _state.Add(state);
             _state.Last().Enter(super);
         }
 
         public void PopState(PEGame super)
         {
+            // there are no states to pop
+            if (_state.Count() == 0)
+            {
+                return;
+            }
             _state.Last().Exit(super);
             _state.RemoveAt(_state.Count);
             _state.Last().Enter(super);

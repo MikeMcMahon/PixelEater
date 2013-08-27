@@ -63,6 +63,12 @@ namespace PixelEater
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            {
+                // exit
+                this.Exit();
+
+            }
             // TODO: Add your update logic here
             _pixelEater.Update(gameTime);
             base.Update(gameTime);

@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace PixelEater.Core.Game.Sprites.Cursor
 {
-    class HiddenCursorState : IStateObject<GameCursor>
+    class HiddenCursorState : InvisibleState<GameCursor>
     {
         double ellapsedTime = 0.0d;
-        public void HandleInput(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
+        public override void HandleInput(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
             // return to the previous state
             if (Mouse.GetState().RightButton == ButtonState.Pressed & ellapsedTime > 1000.0d)
@@ -21,28 +21,29 @@ namespace PixelEater.Core.Game.Sprites.Cursor
                 ellapsedTime = 0;
             }
 
-            ellapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds; 
+            ellapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+            base.HandleInput(super, gameTime, input);
         }
 
-        public void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            super.Show = false;
             // Keep the mouse cursor moving/updating :) 
             super.Size = new Rectangle(
                 Mouse.GetState().X,
                 Mouse.GetState().Y,
                 super.Size.Width,
                 super.Size.Height);
+            base.Update(super, gameTime);
         }
 
-        public void Enter(GameCursor enter)
+        public override void Enter(GameCursor enter)
         {
-            return;
+            base.Enter(enter);
         }
 
-        public void Exit(GameCursor exit)
+        public override void Exit(GameCursor exit)
         {
-            return;
+            base.Exit(exit);
         }
     }
 }
