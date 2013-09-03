@@ -1,4 +1,5 @@
-﻿using PixelEater.Core.State;
+﻿using PixelEater.Core.Game.Sprites.Cursor;
+using PixelEater.Core.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,25 +13,26 @@ namespace PixelEater.Core.Game
         // Navigate about the menus.... 
         public void HandleInput(PEGame super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         // Do update stuff... 
         public void Update(PEGame super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         // Setup all of the resources to be shown 
         public void Enter(PEGame enter)
         {
-            throw new NotImplementedException();
+            enter.mouseCursor.IgnoreInput = false;
+            enter.mouseCursor._state.PushState(enter.mouseCursor, new VisibleCursorState());
         }
 
         // hide all of the resources we don't need to show anymore
         public void Exit(PEGame exit)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

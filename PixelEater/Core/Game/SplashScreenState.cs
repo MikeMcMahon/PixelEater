@@ -68,7 +68,8 @@ namespace PixelEater.Core.Game
                 else
                 {
                     // time to leave this state and go to a loading screen!
-                    super._state.PushState(super, new LoadingScreenState());
+                    super._state.PopState(super);
+                    super._state.PushState(super, new MainMenuState());
                 }
             }
 
@@ -81,6 +82,7 @@ namespace PixelEater.Core.Game
         {
             // hide the mouse cursor
             enter.mouseCursor._state.PushState(enter.mouseCursor, new HiddenCursorState());
+            enter.mouseCursor.IgnoreInput = true;
             enter.background.Texture.SetData(new Color[] { Color.Black });
         }
 

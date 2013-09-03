@@ -16,22 +16,22 @@ namespace PixelEater.Core.Game
         public LoadingScreenState() { }
         public void HandleInput(PEGame super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Update(PEGame super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Enter(PEGame enter)
         {
-            throw new NotImplementedException();
+            // nothing fancy
         }
 
         public void Exit(PEGame exit)
         {
-            throw new NotImplementedException();
+            // nothing fancy
         }
     }
 }

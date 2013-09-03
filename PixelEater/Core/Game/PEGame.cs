@@ -19,21 +19,36 @@ namespace PixelEater.Core.Game
 
         public void LoadContent(GraphicsDevice device, ContentManager manager)
         {
-            background.Texture = new Texture2D(device, 1, 1);
-            background.Color = Color.White;
-            background.Texture.SetData(new Color[] { background.Color });
-            background.Position = new Vector2(0, 0);
+            { // Background
+                background.Texture = new Texture2D(device, 1, 1);
+                background.Color = Color.White;
+                background.Texture.SetData(new Color[] { background.Color });
+                background.Position = new Vector2(0, 0);
 
-            background.Size = new Rectangle(0,0, device.Viewport.Width, device.Viewport.Height);
-
+                background.Size = new Rectangle(0, 0, device.Viewport.Width, device.Viewport.Height);
+            }
 
             // center the mouse on screen
             Mouse.SetPosition(device.Viewport.Width / 2, device.Viewport.Height / 2);
 
-            mouseCursor.Texture = new Texture2D(device, 1, 1);
-            mouseCursor.Color = Color.DarkSalmon;
-            mouseCursor.Texture.SetData(new Color[] { mouseCursor.Color });
-            mouseCursor.Size = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 20, 20);
+            { // The mouse cursor
+                mouseCursor.Texture = new Texture2D(device, 1, 1);
+                mouseCursor.Color = Color.DarkSalmon;
+                mouseCursor.Texture.SetData(new Color[] { mouseCursor.Color });
+                mouseCursor.Size = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 20, 20);
+                mouseCursor.Bounds = device.Viewport.Bounds; // the window bounds
+            }
+
+            { // Main menu sprites
+                { // Start Game
+                }
+                { // load game
+                }
+                { // settings
+                }
+                { // high score
+                }
+            }
 
             _state.PushState(this, new SplashScreenState());
 
@@ -49,6 +64,7 @@ namespace PixelEater.Core.Game
 
             mouseCursor.HandleInput(gameTime, null);
             mouseCursor.Update(gameTime);
+
             _state.HandleInput(this, gameTime, null);
             _state.Update(this, gameTime);
         }

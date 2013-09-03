@@ -14,17 +14,23 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         Random rand = new Random();
         double prevClickTime = 0.0f;
         double ellapsedTime = 0.0f;
-        ButtonState prevState = ButtonState.Released; 
+        ButtonState prevState = ButtonState.Released;
+        int offsetX = 0;
+        int offsetY = 0;
         public void HandleInput(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
+            if (super.IgnoreInput)
+            {
+                return;
+            }
             if (Mouse.GetState().LeftButton == ButtonState.Pressed & prevClickTime > 500f & prevState == ButtonState.Released)
             {
                 // just for funsies we put a random color on the screen! 
                 super.Color = new Color(1 + rand.Next() % 255, 1 + rand.Next() % 255, 1 + rand.Next() % 255);
                 super.Texture.SetData(new Color[] { super.Color });
                 super.Size = new Rectangle(
-                    Mouse.GetState().X,
-                    Mouse.GetState().Y,
+                    0,
+                    0,
                     1 + rand.Next() % 20,
                     1 + rand.Next() % 20);
                 prevClickTime = 0;
@@ -39,11 +45,16 @@ namespace PixelEater.Core.Game.Sprites.Cursor
             ellapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds; 
             prevState = Mouse.GetState().LeftButton; 
             prevClickTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+
+
+
         }
+
 
         public void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            super.Show = true;
+            if (!super.Show) { super.Show = true; }
+            
             // Keep the mouse cursor moving/updating :) 
             super.Size = new Rectangle(
                 Mouse.GetState().X,

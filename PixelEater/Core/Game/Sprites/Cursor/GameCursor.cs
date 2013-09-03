@@ -14,12 +14,12 @@ namespace PixelEater.Core.Game.Sprites
     {
         Random rand = new Random();
         internal CursorState _state = new CursorState();
-        public void HandleInput(GameTime gameTime, Input.IPEGameInput input)
+        public override void HandleInput(GameTime gameTime, Input.IPEGameInput input)
         {
             _state.HandleInput(this, gameTime, input);
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             _state.Update(this, gameTime);
         }

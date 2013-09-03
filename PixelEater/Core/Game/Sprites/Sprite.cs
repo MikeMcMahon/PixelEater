@@ -15,15 +15,20 @@ namespace PixelEater.Core.Game.Sprites
         public Sprite()
         {
             // Should register itself with the spritedisposer that will handle disposing of and cleaning up all sprites... 
+            this.IgnoreInput = false;
+            this.Show = true;
         }
+
         public string Name { get; set; }
         public Texture2D Texture { get; set; }
         public Color Color { get; set; }
         public Vector2 Position { get; set; }
         public Rectangle Size { get; set; }
         public bool Show { get; set; }
-        public void HandleInput(IPEGameInput input) { }
-        public void Update() { }
+        public bool IgnoreInput { get; set; }
+        public Rectangle Bounds { get; set; }
+        public virtual void HandleInput(GameTime gameTime, IPEGameInput input) { }
+        public virtual void Update(GameTime gameTime) { }
 
         /// <summary>
         /// Cleanup the sprite resource

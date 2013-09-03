@@ -39,8 +39,13 @@ namespace PixelEater.Core.Game
                 return;
             }
             _state.Last().Exit(super);
-            _state.RemoveAt(_state.Count);
-            _state.Last().Enter(super);
+            _state.RemoveAt(_state.Count - 1);
+
+            // re-enter any remaining state
+            if (_state.Count() > 0)
+            {
+                _state.Last().Enter(super);
+            }
         }
     }
 }

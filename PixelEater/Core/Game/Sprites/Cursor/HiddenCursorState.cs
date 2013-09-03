@@ -14,6 +14,10 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         double ellapsedTime = 0.0d;
         public override void HandleInput(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
+            if (super.IgnoreInput)
+            {
+                return;
+            }
             // return to the previous state
             if (Mouse.GetState().RightButton == ButtonState.Pressed & ellapsedTime > 1000.0d)
             {
