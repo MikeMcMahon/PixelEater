@@ -29,6 +29,7 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         public void PushState(GameCursor super, IStateObject<GameCursor> state)
         {
             _state.Add(state);
+            _state.Last().Enter(super);
         }
 
         public void PopState(GameCursor super)

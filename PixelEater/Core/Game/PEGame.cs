@@ -22,7 +22,7 @@ namespace PixelEater.Core.Game
             { // Background
                 background.Texture = new Texture2D(device, 1, 1);
                 background.Color = Color.White;
-                background.Texture.SetData(new Color[] { background.Color });
+                background.Texture.SetData(new Color[] { Color.White });
                 background.Position = new Vector2(0, 0);
 
                 background.Size = new Rectangle(0, 0, device.Viewport.Width, device.Viewport.Height);
@@ -72,7 +72,7 @@ namespace PixelEater.Core.Game
         public void Draw(SpriteBatch batch)
         {
             batch.Begin();
-            batch.Draw(background.Texture, background.Size, Color.White);
+            batch.Draw(background.Texture, background.Size, background.Color);
 
             if (mouseCursor.Show)
             {

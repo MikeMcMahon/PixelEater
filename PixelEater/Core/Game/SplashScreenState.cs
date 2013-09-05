@@ -70,12 +70,12 @@ namespace PixelEater.Core.Game
                     // time to leave this state and go to a loading screen!
                     super._state.PopState(super);
                     super._state.PushState(super, new MainMenuState());
+                    return;
                 }
             }
 
             Color bgColor = new Color(lastRgb, lastRgb, lastRgb, 1);
             super.background.Texture.SetData(new Color[] { bgColor });
-            //super.background.Color = bgColor;
         }
 
         public void Enter(PEGame enter)

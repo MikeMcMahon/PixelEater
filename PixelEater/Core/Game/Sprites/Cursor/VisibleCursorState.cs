@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using PixelEater.Core.State;
 using System;
 using System.Collections.Generic;
@@ -14,47 +15,66 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         Random rand = new Random();
         double prevClickTime = 0.0f;
         double ellapsedTime = 0.0f;
+        int prevX = 0;
+        int prevY = 0; 
         ButtonState prevState = ButtonState.Released;
-        int offsetX = 0;
-        int offsetY = 0;
         public void HandleInput(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
             if (super.IgnoreInput)
             {
                 return;
             }
-            if (Mouse.GetState().LeftButton == ButtonState.Pressed & prevClickTime > 500f & prevState == ButtonState.Released)
-            {
-                // just for funsies we put a random color on the screen! 
-                super.Color = new Color(1 + rand.Next() % 255, 1 + rand.Next() % 255, 1 + rand.Next() % 255);
-                super.Texture.SetData(new Color[] { super.Color });
-                super.Size = new Rectangle(
-                    0,
-                    0,
-                    1 + rand.Next() % 20,
-                    1 + rand.Next() % 20);
-                prevClickTime = 0;
+
+            { // detecting touch 
+                var touches = TouchPanel.GetState();
+
+                if (touches.Count > 0 && touches[0].State == TouchLocationState.Pressed)
+                {
+                    // pop the state
+                    super.Show = false;
+                }
             }
 
-            if (Mouse.GetState().RightButton == ButtonState.Pressed & ellapsedTime > 1000)
-            {
-                super._state.PushState(super, new HiddenCursorState());
-                ellapsedTime = 0;
+            { // handling mouse input
+                // If we detect any mouse movement or button press then show the mouse
+                if (prevX != Mouse.GetState().X |
+                    prevY != Mouse.GetState().Y |
+                    Mouse.GetState().LeftButton == ButtonState.Pressed |
+                    Mouse.GetState().RightButton == ButtonState.Pressed)
+                {
+                    this.Enter(super);
+                }
+                prevX = Mouse.GetState().X;
+                prevY = Mouse.GetState().Y;
+
+                if (Mouse.GetState().LeftButton == ButtonState.Pressed & prevClickTime > 500f & prevState == ButtonState.Released)
+                {
+                    // just for funsies we put a random color on the screen! 
+                    super.Color = new Color(1 + rand.Next() % 255, 1 + rand.Next() % 255, 1 + rand.Next() % 255);
+                    super.Texture.SetData(new Color[] { super.Color });
+                    super.Size = new Rectangle(
+                        0,
+                        0,
+                        1 + rand.Next() % 20,
+                        1 + rand.Next() % 20);
+                    prevClickTime = 0;
+                }
+
+                if (Mouse.GetState().RightButton == ButtonState.Pressed & ellapsedTime > 1000)
+                {
+                    super._state.PushState(super, new HiddenCursorState());
+                    ellapsedTime = 0;
+                }
+
+                ellapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds;
+                prevState = Mouse.GetState().LeftButton;
+                prevClickTime += gameTime.ElapsedGameTime.TotalMilliseconds;
             }
-
-            ellapsedTime += gameTime.ElapsedGameTime.TotalMilliseconds; 
-            prevState = Mouse.GetState().LeftButton; 
-            prevClickTime += gameTime.ElapsedGameTime.TotalMilliseconds;
-
-
-
         }
 
 
         public void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (!super.Show) { super.Show = true; }
-            
             // Keep the mouse cursor moving/updating :) 
             super.Size = new Rectangle(
                 Mouse.GetState().X,
@@ -65,7 +85,7 @@ namespace PixelEater.Core.Game.Sprites.Cursor
 
         public void Enter(GameCursor enter)
         {
-            return;
+            if (!enter.Show) { enter.Show = true; }
         }
 
         public void Exit(GameCursor exit)

@@ -18,7 +18,7 @@ namespace PixelEater.Core.Game.Sprites
             this.IgnoreInput = false;
             this.Show = true;
         }
-
+        
         public string Name { get; set; }
         public Texture2D Texture { get; set; }
         public Color Color { get; set; }
@@ -27,8 +27,15 @@ namespace PixelEater.Core.Game.Sprites
         public bool Show { get; set; }
         public bool IgnoreInput { get; set; }
         public Rectangle Bounds { get; set; }
-        public virtual void HandleInput(GameTime gameTime, IPEGameInput input) { }
-        public virtual void Update(GameTime gameTime) { }
+
+        public virtual void HandleInput(GameTime gameTime, IPEGameInput input)
+        {
+            throw new NotImplementedException("Base sprites do nothing!");
+        }
+        public virtual void Update(GameTime gameTime)
+        {
+            throw new NotImplementedException("base sprites do nothing!");
+        }
 
         /// <summary>
         /// Cleanup the sprite resource

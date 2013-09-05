@@ -1,4 +1,6 @@
-﻿using PixelEater.Core.Game.Sprites.Cursor;
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using PixelEater.Core.Game.Sprites.Cursor;
 using PixelEater.Core.State;
 using System;
 using System.Collections.Generic;
@@ -20,6 +22,7 @@ namespace PixelEater.Core.Game
         public void Update(PEGame super, Microsoft.Xna.Framework.GameTime gameTime)
         {
             //throw new NotImplementedException();
+
         }
 
         // Setup all of the resources to be shown 
@@ -27,6 +30,9 @@ namespace PixelEater.Core.Game
         {
             enter.mouseCursor.IgnoreInput = false;
             enter.mouseCursor._state.PushState(enter.mouseCursor, new VisibleCursorState());
+
+            enter.background.Color = Color.White;
+            enter.background.Texture.SetData(new Color[] { Color.Purple });
         }
 
         // hide all of the resources we don't need to show anymore
