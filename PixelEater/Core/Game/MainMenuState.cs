@@ -15,14 +15,13 @@ namespace PixelEater.Core.Game
         // Navigate about the menus.... 
         public void HandleInput(PEGame super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
-            //throw new NotImplementedException();
+            super.startGame.HandleInput(gameTime, input);
         }
 
         // Do update stuff... 
         public void Update(PEGame super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            //throw new NotImplementedException();
-
+            super.startGame.Update(gameTime);
         }
 
         // Setup all of the resources to be shown 
@@ -33,6 +32,8 @@ namespace PixelEater.Core.Game
 
             enter.background.Color = Color.White;
             enter.background.Texture.SetData(new Color[] { Color.Purple });
+
+            enter.startGame.Show = true;
         }
 
         // hide all of the resources we don't need to show anymore

@@ -143,6 +143,7 @@
     <Compile Include="Core\State\InvisibleState.cs" />
     <Compile Include="Core\State\IState.cs" />
     <Compile Include="Core\State\IStateObject.cs" />
+    <Compile Include="Core\Util\CollisionDetection.cs" />
     <Compile Include="Input\IPEGameInput.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="PixelEater.cs" />

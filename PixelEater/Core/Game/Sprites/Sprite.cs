@@ -26,7 +26,7 @@ namespace PixelEater.Core.Game.Sprites
         public Rectangle Size { get; set; }
         public bool Show { get; set; }
         public bool IgnoreInput { get; set; }
-        public Rectangle Bounds { get; set; }
+        public Rectangle WindowBounds { get; set; }
 
         public virtual void HandleInput(GameTime gameTime, IPEGameInput input)
         {

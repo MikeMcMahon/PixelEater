@@ -9,11 +9,11 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
 {
     class MenuItemState : IState<MenuItem>
     {
-        internal List<IStateObject<MenuItem>> _state;
+        internal List<IStateObject<MenuItem>> _state = new List<IStateObject<MenuItem>>();
 
         public void HandleInput(MenuItem super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
-            if (_state.Count > 0)
+            if (_state.Count < 0)
             {
                 return;
             }
@@ -23,7 +23,7 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
 
         public void Update(MenuItem super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            if (_state.Count > 0)
+            if (_state.Count < 0)
             {
                 return;
             }
