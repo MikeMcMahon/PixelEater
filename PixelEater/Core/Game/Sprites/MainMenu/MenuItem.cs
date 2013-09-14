@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PixelEater.Core.Game.Sprites.MainMenu
 {
-    class MenuItem : Sprite
+    class MenuItem : BaseStateSprite<MenuItem>
     {
         public MenuItem()
         {
@@ -20,27 +20,27 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
             this.Active = Color.Green;
 
             // Default state for a menu item
-            _state.PushState(this, new HoverMenuItemState()); 
+            StateManager = new BaseState<MenuItem, IStateObject<MenuItem>>();
+            StateManager.PushState(this, new HoverMenuItemState());
         }
-
-        internal MenuItemState _state = new MenuItemState();
 
         public Color Highlight { get; set; }
         public Color Active { get; set; }
         public Color Default { get; set; }
 
-        public override void HandleInput(Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input){
-            _state.HandleInput(this, gameTime, input);
+
+        public override void HandleInput(Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input) {
+            StateManager.HandleInput(this, gameTime, input);
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            _state.Update(this, gameTime);
+            StateManager.Update(this, gameTime);
         }
 
         public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-            _state.Draw(this, spriteBatch);
+            StateManager.Draw(this, spriteBatch);
         }
     }
 }

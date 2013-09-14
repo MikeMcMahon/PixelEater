@@ -62,7 +62,7 @@ namespace PixelEater.Core.Game.Sprites.Cursor
 
                 if (Mouse.GetState().RightButton == ButtonState.Pressed & ellapsedTime > 1000)
                 {
-                    super._state.PushState(super, new HiddenCursorState());
+                    super.StateManager.PushState(super, new HiddenCursorState());
                     ellapsedTime = 0;
                 }
 

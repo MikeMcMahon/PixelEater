@@ -21,7 +21,7 @@ namespace PixelEater.Core.Game.Sprites.Cursor
             // return to the previous state
             if (Mouse.GetState().RightButton == ButtonState.Pressed & ellapsedTime > 1000.0d)
             {
-                super._state.PopState(super);
+                super.StateManager.PopState(super);
                 ellapsedTime = 0;
             }
 

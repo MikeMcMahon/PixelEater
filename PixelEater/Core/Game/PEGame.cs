@@ -106,7 +106,7 @@ namespace PixelEater.Core.Game
             _state.Draw(this, spriteBatch);
 
             // always draw the mouse last... 
-            mouseCursor._state.Draw(mouseCursor, spriteBatch);
+            mouseCursor.StateManager.Draw(mouseCursor, spriteBatch);
             spriteBatch.End();
         }
     }

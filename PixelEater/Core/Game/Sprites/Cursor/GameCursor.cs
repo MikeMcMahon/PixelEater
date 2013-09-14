@@ -10,18 +10,22 @@ using System.Threading.Tasks;
 
 namespace PixelEater.Core.Game.Sprites
 {
-    class GameCursor : Sprite
+    class GameCursor : BaseStateSprite<GameCursor>
     {
-        Random rand = new Random();
-        internal CursorState _state = new CursorState();
+        public GameCursor()
+        {
+            base.StateManager = new BaseState<GameCursor, IStateObject<GameCursor>>();
+            base.StateManager.PushState(this, new VisibleCursorState());
+        }
+        
         public override void HandleInput(GameTime gameTime, Input.IPEGameInput input)
         {
-            _state.HandleInput(this, gameTime, input);
+            base.StateManager.HandleInput(this, gameTime, input);
         }
 
         public override void Update(GameTime gameTime)
         {
-            _state.Update(this, gameTime);
+            base.StateManager.Update(this, gameTime);
         }
     }
 }

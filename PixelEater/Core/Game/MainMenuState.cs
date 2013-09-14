@@ -35,7 +35,7 @@ namespace PixelEater.Core.Game
         public void Enter(PEGame super)
         {
             super.mouseCursor.IgnoreInput = false;
-            super.mouseCursor._state.PushState(super.mouseCursor, new VisibleCursorState());
+            super.mouseCursor.StateManager.PushState(super.mouseCursor, new VisibleCursorState());
 
             super.background.Color = Color.White;
             super.background.Texture.SetData(new Color[] { Color.Purple });

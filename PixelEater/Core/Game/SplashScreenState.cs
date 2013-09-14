@@ -90,7 +90,7 @@ namespace PixelEater.Core.Game
         public void Enter(PEGame enter)
         {
             // hide the mouse cursor
-            enter.mouseCursor._state.PushState(enter.mouseCursor, new HiddenCursorState());
+            enter.mouseCursor.StateManager.PushState(enter.mouseCursor, new HiddenCursorState());
             enter.mouseCursor.IgnoreInput = true;
             enter.background.Texture.SetData(new Color[] { Color.Black });
         }

@@ -132,14 +132,14 @@
     <Compile Include="Core\Game\GameState.cs" />
     <Compile Include="Core\Game\MainMenuState.cs" />
     <Compile Include="Core\Game\SplashScreenState.cs" />
+    <Compile Include="Core\Game\Sprites\BaseStateSprite.cs" />
     <Compile Include="Core\Game\Sprites\Cursor\GameCursor.cs" />
-    <Compile Include="Core\Game\Sprites\Cursor\CursorState.cs" />
     <Compile Include="Core\Game\Sprites\Cursor\HiddenCursorState.cs" />
     <Compile Include="Core\Game\Sprites\Cursor\VisibleCursorState.cs" />
     <Compile Include="Core\Game\Sprites\MainMenu\HoverMenuItemState.cs" />
     <Compile Include="Core\Game\Sprites\MainMenu\MenuItem.cs" />
-    <Compile Include="Core\Game\Sprites\MainMenu\MenuItemState.cs" />
     <Compile Include="Core\Game\Sprites\Sprite.cs" />
+    <Compile Include="Core\State\BaseState.cs" />
     <Compile Include="Core\State\InvisibleState.cs" />
     <Compile Include="Core\State\IState.cs" />
     <Compile Include="Core\State\IStateObject.cs" />
