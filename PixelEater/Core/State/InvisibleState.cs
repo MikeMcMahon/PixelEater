@@ -32,5 +32,10 @@ namespace PixelEater.Core.State
         {
             return;
         }
+
+        public void Draw(T super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            // Invisible state, do not draw! 
+        }
     }
 }

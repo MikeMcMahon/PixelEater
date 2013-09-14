@@ -20,13 +20,17 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
                 mouseX = Mouse.GetState().X;
                 mouseY = Mouse.GetState().Y;
 
-                if (CollisionDetection.RectangleCollision(super.Size, new Microsoft.Xna.Framework.Point(mouseX, mouseY)))
+                if (CollisionDetection.RectangleCollision(super.Bounds, new Microsoft.Xna.Framework.Point(mouseX, mouseY)))
                 {
-                    super.Texture.SetData(new Color[] { Color.White });
+                    super.Texture.SetData(new Color[] { super.Highlight });
+                    if (Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    {
+                        super.Texture.SetData(new Color[] { super.Active });
+                    }
                 }
                 else
                 {
-                    super.Texture.SetData(new Color[] { Color.Black });
+                    super.Texture.SetData(new Color[] { super.Default });
                 }
             }
             { // handle the touch input
@@ -46,6 +50,12 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
         public void Exit(MenuItem exit)
         {
             // 
+        }
+
+
+        public void Draw(MenuItem super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            Sprite.Draw(spriteBatch, super);
         }
     }
 }

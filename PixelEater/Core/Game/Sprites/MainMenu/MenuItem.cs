@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using PixelEater.Core.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,14 +13,21 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
     {
         public MenuItem()
         {
-            base.Size = new Rectangle(0, 0, 400, 30);
+            base.Bounds = new Rectangle(0, 0, 400, 30);
             base.Color = Color.White;
+            this.Highlight = Color.White;
+            this.Default = Color.Black;
+            this.Active = Color.Green;
 
             // Default state for a menu item
             _state.PushState(this, new HoverMenuItemState()); 
         }
 
-        MenuItemState _state = new MenuItemState();
+        internal MenuItemState _state = new MenuItemState();
+
+        public Color Highlight { get; set; }
+        public Color Active { get; set; }
+        public Color Default { get; set; }
 
         public override void HandleInput(Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input){
             _state.HandleInput(this, gameTime, input);
@@ -28,6 +36,11 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
             _state.Update(this, gameTime);
-        } 
+        }
+
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            _state.Draw(this, spriteBatch);
+        }
     }
 }

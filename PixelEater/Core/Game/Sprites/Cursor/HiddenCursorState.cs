@@ -32,11 +32,11 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         public override void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Keep the mouse cursor moving/updating :) 
-            super.Size = new Rectangle(
+            super.Bounds = new Rectangle(
                 Mouse.GetState().X,
                 Mouse.GetState().Y,
-                super.Size.Width,
-                super.Size.Height);
+                super.Bounds.Width,
+                super.Bounds.Height);
             base.Update(super, gameTime);
         }
 

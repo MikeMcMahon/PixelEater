@@ -33,5 +33,11 @@ namespace PixelEater.Core.Game
         {
             // nothing fancy
         }
+
+
+        public void Draw(PEGame super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            //throw new NotImplementedException();
+        }
     }
 }

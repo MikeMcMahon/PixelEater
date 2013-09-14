@@ -18,6 +18,9 @@ namespace PixelEater.Core.Game
         internal GameCursor mouseCursor = new GameCursor();
         internal GameState _state = new GameState();
         internal MenuItem startGame = new MenuItem();
+        internal MenuItem loadGame = new MenuItem();
+        internal MenuItem settings = new MenuItem();
+        internal MenuItem highScore = new MenuItem();
 
         public void LoadContent(GraphicsDevice device, ContentManager manager)
         {
@@ -25,9 +28,7 @@ namespace PixelEater.Core.Game
                 background.Texture = new Texture2D(device, 1, 1);
                 background.Color = Color.White;
                 background.Texture.SetData(new Color[] { Color.White });
-                background.Position = new Vector2(0, 0);
-
-                background.Size = new Rectangle(0, 0, device.Viewport.Width, device.Viewport.Height);
+                background.Bounds = new Rectangle(0, 0, device.Viewport.Width, device.Viewport.Height);
             }
 
             // center the mouse on screen
@@ -37,23 +38,44 @@ namespace PixelEater.Core.Game
                 mouseCursor.Texture = new Texture2D(device, 1, 1);
                 mouseCursor.Color = Color.DarkSalmon;
                 mouseCursor.Texture.SetData(new Color[] { mouseCursor.Color });
-                mouseCursor.Size = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 20, 20);
+                mouseCursor.Bounds = new Rectangle(Mouse.GetState().X, Mouse.GetState().Y, 20, 20);
                 mouseCursor.WindowBounds = device.Viewport.Bounds; // the window bounds
+                mouseCursor.CollisionWhenHidden = false;
             }
 
             { // Main menu sprites
+                int height = 60;
+                int width = 300;
                 { // Start Game
-                    startGame.Position = new Vector2(device.Viewport.Width / 2, device.Viewport.Height / 2);
+                    startGame.Bounds = new Rectangle((device.Viewport.Width / 2) - 150, (device.Viewport.Height / 2) - (height / 2), width, height);
                     startGame.Show = false;
                     startGame.Texture = new Texture2D(device, 1, 1);
                     startGame.Texture.SetData(new Color[] { Color.Black });
                     startGame.Color = Color.White;
+                    startGame.Highlight = Color.DarkOliveGreen;
                 }
                 { // load game
+                    loadGame.Bounds = new Rectangle((device.Viewport.Width / 2) - 150, (device.Viewport.Height / 2) - (height / 2) + height + 10, width, height);
+                    loadGame.Show = false;
+                    loadGame.Texture = new Texture2D(device, 1, 1);
+                    loadGame.Texture.SetData(new Color[] { Color.Black });
+                    loadGame.Color = Color.White;
+                    loadGame.Highlight = Color.Aqua;
+
                 }
                 { // settings
+                    settings.Bounds = new Rectangle((device.Viewport.Width / 2) - 150, (device.Viewport.Height / 2) - (height / 2) + (height * 2) + (10 * 2), width, height);
+                    settings.Show = false;
+                    settings.Texture = new Texture2D(device, 1, 1);
+                    settings.Texture.SetData(new Color[] { Color.Black });
+                    settings.Color = Color.White;
                 }
                 { // high score
+                    highScore.Bounds = new Rectangle((device.Viewport.Width / 2) - 150, (device.Viewport.Height / 2) - (height / 2) + (height * 3) + (10 * 3), width, height);
+                    highScore.Show = false;
+                    highScore.Texture = new Texture2D(device, 1, 1);
+                    highScore.Texture.SetData(new Color[] { Color.Black });
+                    highScore.Color = Color.White;
                 }
             }
 
@@ -76,21 +98,16 @@ namespace PixelEater.Core.Game
             _state.Update(this, gameTime);
         }
 
-        public void Draw(SpriteBatch batch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            batch.Begin();
-            batch.Draw(background.Texture, background.Size, background.Color);
+            spriteBatch.Begin();
+            
+            // Pass handle to the states to begin drawing
+            _state.Draw(this, spriteBatch);
 
-            if (startGame.Show)
-            {
-                batch.Draw(startGame.Texture, startGame.Size, startGame.Color);
-            }
-
-            if (mouseCursor.Show)
-            {
-                batch.Draw(mouseCursor.Texture, mouseCursor.Size, mouseCursor.Color);
-            }
-            batch.End();
+            // always draw the mouse last... 
+            mouseCursor._state.Draw(mouseCursor, spriteBatch);
+            spriteBatch.End();
         }
     }
 }

@@ -52,7 +52,7 @@ namespace PixelEater.Core.Game.Sprites.Cursor
                     // just for funsies we put a random color on the screen! 
                     super.Color = new Color(1 + rand.Next() % 255, 1 + rand.Next() % 255, 1 + rand.Next() % 255);
                     super.Texture.SetData(new Color[] { super.Color });
-                    super.Size = new Rectangle(
+                    super.Bounds = new Rectangle(
                         0,
                         0,
                         1 + rand.Next() % 20,
@@ -76,11 +76,11 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         public void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
         {
             // Keep the mouse cursor moving/updating :) 
-            super.Size = new Rectangle(
+            super.Bounds = new Rectangle(
                 Mouse.GetState().X,
                 Mouse.GetState().Y,
-                super.Size.Width,
-                super.Size.Height);
+                super.Bounds.Width,
+                super.Bounds.Height);
         }
 
         public void Enter(GameCursor enter)
@@ -91,6 +91,12 @@ namespace PixelEater.Core.Game.Sprites.Cursor
         public void Exit(GameCursor exit)
         {
             return;
+        }
+
+
+        public void Draw(GameCursor super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            Sprite.Draw(spriteBatch, super);
         }
     }
 }

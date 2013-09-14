@@ -47,5 +47,11 @@ namespace PixelEater.Core.Game
                 _state.Last().Enter(super);
             }
         }
+
+
+        public void Draw(PEGame super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            if (_state.Last() != null) _state.Last().Draw(super, spriteBatch);
+        }
     }
 }

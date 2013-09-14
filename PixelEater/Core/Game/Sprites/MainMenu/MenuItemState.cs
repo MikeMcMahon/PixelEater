@@ -49,5 +49,13 @@ namespace PixelEater.Core.Game.Sprites.MainMenu
                 _state.RemoveAt(_state.Count - 1);
             }
         }
+
+        public void Draw(MenuItem super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            if (_state.Last() != null)
+            {
+                _state.Last().Draw(super, spriteBatch);
+            }
+        }
     }
 }

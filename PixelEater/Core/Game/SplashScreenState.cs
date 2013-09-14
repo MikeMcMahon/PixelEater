@@ -1,4 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using PixelEater.Core.Game.Sprites;
 using PixelEater.Core.Game.Sprites.Cursor;
 using PixelEater.Core.State;
 using System;
@@ -17,8 +19,15 @@ namespace PixelEater.Core.Game
         // ignore input, so don't pass to any children sprites... 
         public void HandleInput(PEGame super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
-            
-            
+
+            { // handle keyboard input
+                if (Keyboard.GetState().GetPressedKeys().Count() > 0 && Keyboard.GetState().GetPressedKeys()[0] == Keys.Space)
+                {
+                    super._state.PopState(super);
+                    super._state.PushState(super, new MainMenuState());
+                    return;
+                }
+            }
         }
 
         // fade from black over 1 sec, show for 3 sec, fade over 500ms to black
@@ -89,6 +98,12 @@ namespace PixelEater.Core.Game
         public void Exit(PEGame exit)
         {
             // cleanup or hide resources... 
+        }
+
+
+        public void Draw(PEGame super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            Sprite.Draw(spriteBatch, super.background);
         }
     }
 }

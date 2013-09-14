@@ -18,12 +18,12 @@ namespace PixelEater.Core.Game.Sprites.Cursor
 
         public void HandleInput(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime, Input.IPEGameInput input)
         {
-            _state.Last().HandleInput(super, gameTime, null);
+            if (_state.Last() != null) _state.Last().HandleInput(super, gameTime, null);
         }
 
         public void Update(GameCursor super, Microsoft.Xna.Framework.GameTime gameTime)
         {
-            _state.Last().Update(super, gameTime);
+            if (_state.Last() != null) _state.Last().Update(super, gameTime);
         }
 
         public void PushState(GameCursor super, IStateObject<GameCursor> state)
@@ -34,7 +34,13 @@ namespace PixelEater.Core.Game.Sprites.Cursor
 
         public void PopState(GameCursor super)
         {
-            _state.RemoveAt(_state.Count - 1);
+            if (_state.Last() != null) _state.RemoveAt(_state.Count - 1);
+        }
+
+
+        public void Draw(GameCursor super, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            if (_state.Last() != null) _state.Last().Draw(super, spriteBatch);
         }
     }
 }
