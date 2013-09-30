@@ -138,11 +138,13 @@
     <Compile Include="Core\Game\Sprites\Cursor\VisibleCursorState.cs" />
     <Compile Include="Core\Game\Sprites\MainMenu\HoverMenuItemState.cs" />
     <Compile Include="Core\Game\Sprites\MainMenu\MenuItem.cs" />
+    <Compile Include="Core\Game\Sprites\PixelEater\PixelEater.cs" />
     <Compile Include="Core\Game\Sprites\Sprite.cs" />
     <Compile Include="Core\State\BaseState.cs" />
     <Compile Include="Core\State\InvisibleState.cs" />
     <Compile Include="Core\State\IState.cs" />
     <Compile Include="Core\State\IStateObject.cs" />
+    <Compile Include="Core\State\NullState.cs" />
     <Compile Include="Core\Util\CollisionDetection.cs" />
     <Compile Include="Input\IPEGameInput.cs" />
     <Compile Include="Program.cs" />
@@ -161,7 +163,9 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Core\Game\Sprites\PixelPolice\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>

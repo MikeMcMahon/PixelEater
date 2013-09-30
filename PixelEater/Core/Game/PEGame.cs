@@ -22,8 +22,19 @@ namespace PixelEater.Core.Game
         internal MenuItem settings = new MenuItem();
         internal MenuItem highScore = new MenuItem();
 
+        internal Sprite[] _gameSprites = new Sprite[1024];
+        private Matrix SpriteScale { get; set; }
+
         public void LoadContent(GraphicsDevice device, ContentManager manager)
         {
+            // Default resolution is 800x600; scale sprites up or down based on
+            // current viewport
+            float screenscale =
+                (float)device.Viewport.Width / 1366;
+            // Create the scale transform for Draw. 
+            // Do not scale the sprite depth (Z=1).
+            SpriteScale = Matrix.CreateScale(screenscale, screenscale, 1);
+
             { // Background
                 background.Texture = new Texture2D(device, 1, 1);
                 background.Color = Color.White;

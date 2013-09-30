@@ -30,14 +30,6 @@ namespace PixelEater.Core.Game.Sprites
         public bool CollisionWhenHidden { get; set; }
         public Rectangle WindowBounds { get; set; }
 
-        public virtual void HandleInput(GameTime gameTime, IPEGameInput input)
-        {
-            throw new NotImplementedException("Base sprites do nothing!");
-        }
-        public virtual void Update(GameTime gameTime)
-        {
-            throw new NotImplementedException("base sprites do nothing!");
-        }
 
         // Generic draw that can be overriden
         public static void Draw(SpriteBatch spriteBatch, Sprite sprite)
@@ -46,11 +38,6 @@ namespace PixelEater.Core.Game.Sprites
             {
                 spriteBatch.Draw(sprite.Texture, sprite.Bounds, sprite.Color);
             }
-        }
-
-        public virtual void Draw(SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException("Base sprites do nothing!");
         }
 
         /// <summary>

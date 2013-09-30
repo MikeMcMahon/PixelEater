@@ -41,7 +41,7 @@ namespace PixelEater
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            
             _pixelEater.LoadContent(GraphicsDevice, this.Content);
         }
 
